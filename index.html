@@ -135,6 +135,47 @@
       box-shadow: 0 0 18px var(--primary);
     }
 
+    .story {
+      margin-top: 32px;
+      display: grid;
+      gap: 26px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--stroke);
+      border-radius: 22px;
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+    }
+    .story h2 { font-size: 1.9rem; letter-spacing: -0.01em; }
+    .story p { color: var(--muted); }
+    .story-rows { display: grid; gap: 16px; }
+    .story-highlight { color: var(--text); font-weight: 600; }
+    .story-list { list-style: none; display: grid; gap: 8px; padding: 0; margin: 12px 0 0; }
+    .story-list li { padding-left: 16px; position: relative; color: var(--muted); }
+    .story-list li::before { content: '•'; color: var(--primary); position: absolute; left: 0; }
+    .story-carousel {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      padding: 4px 2px 2px;
+      scroll-snap-type: x mandatory;
+    }
+    .story-card {
+      min-width: 240px;
+      background: linear-gradient(140deg, rgba(143,134,255,0.18), rgba(139,209,255,0.12));
+      border: 1px solid var(--stroke);
+      border-radius: 16px;
+      padding: 12px;
+      box-shadow: var(--shadow);
+      scroll-snap-align: start;
+      position: relative;
+      overflow: hidden;
+    }
+    .story-card img { width: 100%; height: 140px; object-fit: cover; border-radius: 12px; }
+    .story-card small { display: block; margin-top: 10px; color: var(--muted); }
+    .story-card strong { display: block; margin-top: 6px; }
+    .story-carousel::-webkit-scrollbar { height: 6px; }
+    .story-carousel::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 999px; }
+
     .block-title { font-size: clamp(2rem, 3vw, 2.4rem); margin-bottom: 16px; letter-spacing: -0.02em; }
     .block-lead { color: var(--muted); max-width: 760px; margin-bottom: 26px; }
 
@@ -355,6 +396,52 @@
     </header>
 
     <main>
+      <section class="story">
+        <div>
+          <div class="accent-line"></div>
+          <h2>História real de quem já viveu o seu plantão</h2>
+        </div>
+        <div class="story-rows">
+          <p>Todo veterinário já viveu aquele momento em que o consultório está cheio, o telefone não para, os tutores têm mil dúvidas — e, quando finalmente o dia termina, não sobra energia para pensar em redes sociais.</p>
+          <p class="story-highlight">E aí bate aquela sensação incômoda: “Será que estou perdendo pacientes porque minha presença digital não mostra quem eu realmente sou?”</p>
+          <p>Eu entendo. Porque antes de ser do marketing… eu sou médica veterinária. E já estive exatamente no mesmo lugar que você.</p>
+          <p>Lá atrás, eu via colegas incríveis — profissionais dedicados, técnicos, humanos — tendo dificuldade para mostrar seu trabalho de forma clara. A agenda não preenchia como merecia, e os tutores nem sempre compreendiam o valor real por trás de cada conduta, exame e decisão clínica. Não era falta de competência. Era falta de comunicação.</p>
+          <p>Foi aí que percebi: o veterinário que sabe se comunicar, cresce. O que não sabe, fica para trás — mesmo sendo excelente.</p>
+          <p>Então transformei minha experiência na clínica em estratégia digital. Hoje, ajudo veterinários a traduzirem sua rotina, sua técnica e seu cuidado em uma presença online que:</p>
+          <ul class="story-list">
+            <li>educa sem complicar,</li>
+            <li>atrai tutores certos,</li>
+            <li>fortalece autoridade,</li>
+            <li>e sustenta o crescimento da clínica.</li>
+          </ul>
+          <p>Sem fórmulas prontas. Sem “modinhas” do marketing. Apenas comunicação feita por alguém que conhece seu mundo — porque ele também já foi o meu.</p>
+          <p class="story-highlight">Seu trabalho é salvar vidas. O meu é garantir que as pessoas certas enxerguem isso.</p>
+        </div>
+
+        <div class="story-carousel" aria-label="Alguns designs para inspirar">
+          <div class="story-card">
+            <img src="img/IMG_0059 copiar (5).jpg" alt="Design aplicado em comunicação veterinária">
+            <small>Design real da equipe</small>
+            <strong>Social media veterinário</strong>
+          </div>
+          <div class="story-card">
+            <img src="img/IMG_0082 copiar (4).jpg" alt="Identidade aplicada em material veterinário">
+            <small>Identidade em materiais</small>
+            <strong>Autoridade e clareza</strong>
+          </div>
+          <div class="story-card">
+            <img src="img/IMG_0094 copiar (2).jpg" alt="Aplicação visual em campanhas">
+            <small>Campanhas e educação</small>
+            <strong>Conteúdo que educa</strong>
+          </div>
+          <div class="story-card">
+            <img src="img/IMG_0104 copiar (1).jpg" alt="Peças visuais produzidas">
+            <small>Peças produzidas</small>
+            <strong>Marca consistente</strong>
+          </div>
+        </div>
+      </section>
+
       <section class="hero" id="topo">
         <div>
           <span class="pill">Marketing veterinário premium</span>
