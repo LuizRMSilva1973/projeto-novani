@@ -138,20 +138,67 @@
     .story {
       margin-top: 32px;
       display: grid;
-      gap: 26px;
-      background: rgba(255,255,255,0.02);
+      gap: 22px;
+      background: linear-gradient(120deg, rgba(139,209,255,0.05), rgba(143,134,255,0.06));
       border: 1px solid var(--stroke);
       border-radius: 22px;
-      padding: 28px 24px;
+      padding: 28px 24px 30px;
       box-shadow: var(--shadow);
+      overflow: hidden;
     }
     .story h2 { font-size: 1.9rem; letter-spacing: -0.01em; }
     .story p { color: var(--muted); }
-    .story-rows { display: grid; gap: 16px; }
     .story-highlight { color: var(--text); font-weight: 600; }
-    .story-list { list-style: none; display: grid; gap: 8px; padding: 0; margin: 12px 0 0; }
-    .story-list li { padding-left: 16px; position: relative; color: var(--muted); }
-    .story-list li::before { content: '•'; color: var(--primary); position: absolute; left: 0; }
+    .story-shell { display: grid; gap: 18px; }
+    .story-slider {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      border: 1px solid var(--stroke);
+      background: rgba(5, 9, 20, 0.6);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+    }
+    .story-track {
+      display: flex;
+      transition: transform 0.5s ease;
+      will-change: transform;
+    }
+    .story-slide {
+      min-width: 100%;
+      padding: 22px 20px 28px;
+      display: grid;
+      gap: 12px;
+    }
+    .story-slide p { color: var(--muted); }
+    .story-slide ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+    .story-slide li { padding-left: 16px; position: relative; color: var(--muted); }
+    .story-slide li::before { content: '•'; color: var(--primary); position: absolute; left: 0; }
+    .story-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 8px 4px;
+    }
+    .story-dots { display: flex; gap: 8px; justify-content: center; flex: 1; }
+    .story-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      border: 1px solid var(--stroke);
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .story-dot.active { background: var(--primary); transform: scale(1.05); box-shadow: 0 0 12px rgba(139, 209, 255, 0.7); }
+    .story-ctrl-btn {
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 10px 12px;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .story-ctrl-btn:hover { transform: translateY(-1px); background: rgba(255,255,255,0.1); }
     .story-carousel {
       display: flex;
       gap: 14px;
@@ -396,48 +443,70 @@
     </header>
 
     <main>
-      <section class="story">
+      <section class="story" id="storytelling">
         <div>
           <div class="accent-line"></div>
           <h2>História real de quem já viveu o seu plantão</h2>
         </div>
-        <div class="story-rows">
-          <p>Todo veterinário já viveu aquele momento em que o consultório está cheio, o telefone não para, os tutores têm mil dúvidas — e, quando finalmente o dia termina, não sobra energia para pensar em redes sociais.</p>
-          <p class="story-highlight">E aí bate aquela sensação incômoda: “Será que estou perdendo pacientes porque minha presença digital não mostra quem eu realmente sou?”</p>
-          <p>Eu entendo. Porque antes de ser do marketing… eu sou médica veterinária. E já estive exatamente no mesmo lugar que você.</p>
-          <p>Lá atrás, eu via colegas incríveis — profissionais dedicados, técnicos, humanos — tendo dificuldade para mostrar seu trabalho de forma clara. A agenda não preenchia como merecia, e os tutores nem sempre compreendiam o valor real por trás de cada conduta, exame e decisão clínica. Não era falta de competência. Era falta de comunicação.</p>
-          <p>Foi aí que percebi: o veterinário que sabe se comunicar, cresce. O que não sabe, fica para trás — mesmo sendo excelente.</p>
-          <p>Então transformei minha experiência na clínica em estratégia digital. Hoje, ajudo veterinários a traduzirem sua rotina, sua técnica e seu cuidado em uma presença online que:</p>
-          <ul class="story-list">
-            <li>educa sem complicar,</li>
-            <li>atrai tutores certos,</li>
-            <li>fortalece autoridade,</li>
-            <li>e sustenta o crescimento da clínica.</li>
-          </ul>
-          <p>Sem fórmulas prontas. Sem “modinhas” do marketing. Apenas comunicação feita por alguém que conhece seu mundo — porque ele também já foi o meu.</p>
-          <p class="story-highlight">Seu trabalho é salvar vidas. O meu é garantir que as pessoas certas enxerguem isso.</p>
-        </div>
+        <div class="story-shell">
+          <div class="story-slider" aria-live="polite">
+            <div class="story-track">
+              <article class="story-slide">
+                <p>Todo veterinário já viveu aquele momento em que o consultório está cheio, o telefone não para, os tutores têm mil dúvidas — e, quando finalmente o dia termina, não sobra energia para pensar em redes sociais.</p>
+              </article>
+              <article class="story-slide">
+                <p class="story-highlight">E aí bate aquela sensação incômoda: “Será que estou perdendo pacientes porque minha presença digital não mostra quem eu realmente sou?”</p>
+              </article>
+              <article class="story-slide">
+                <p>Eu entendo. Porque antes de ser do marketing… eu sou médica veterinária. E já estive exatamente no mesmo lugar que você.</p>
+                <p>Lá atrás, eu via colegas incríveis — profissionais dedicados, técnicos, humanos — tendo dificuldade para mostrar seu trabalho de forma clara. A agenda não preenchia como merecia, e os tutores nem sempre compreendiam o valor real por trás de cada conduta, exame e decisão clínica.</p>
+              </article>
+              <article class="story-slide">
+                <p>Não era falta de competência. Era falta de comunicação.</p>
+                <p>Foi aí que percebi: o veterinário que sabe se comunicar, cresce. O que não sabe, fica para trás — mesmo sendo excelente.</p>
+              </article>
+              <article class="story-slide">
+                <p>Então transformei minha experiência na clínica em estratégia digital. Hoje, ajudo veterinários a traduzirem sua rotina, sua técnica e seu cuidado em uma presença online que:</p>
+                <ul>
+                  <li>educa sem complicar,</li>
+                  <li>atrai tutores certos,</li>
+                  <li>fortalece autoridade,</li>
+                  <li>e sustenta o crescimento da clínica.</li>
+                </ul>
+              </article>
+              <article class="story-slide">
+                <p>Sem fórmulas prontas. Sem “modinhas” do marketing. Apenas comunicação feita por alguém que conhece seu mundo — porque ele também já foi o meu.</p>
+                <p class="story-highlight">Seu trabalho é salvar vidas. O meu é garantir que as pessoas certas enxerguem isso.</p>
+              </article>
+            </div>
+            <div class="story-controls">
+              <button class="story-ctrl-btn" data-dir="prev" aria-label="Anterior">←</button>
+              <div class="story-dots" aria-label="Navegação do storytelling"></div>
+              <button class="story-ctrl-btn" data-dir="next" aria-label="Próximo">→</button>
+            </div>
+          </div>
 
-        <div class="story-carousel" aria-label="Alguns designs para inspirar">
-          <div class="story-card">
-            <img src="img/IMG_0059 copiar (5).jpg" alt="Design aplicado em comunicação veterinária">
-            <small>Design real da equipe</small>
-            <strong>Social media veterinário</strong>
-          </div>
-          <div class="story-card">
-            <img src="img/IMG_0082 copiar (4).jpg" alt="Identidade aplicada em material veterinário">
-            <small>Identidade em materiais</small>
-            <strong>Autoridade e clareza</strong>
-          </div>
-          <div class="story-card">
-            <img src="img/IMG_0094 copiar (2).jpg" alt="Aplicação visual em campanhas">
-            <small>Campanhas e educação</small>
-            <strong>Conteúdo que educa</strong>
-          </div>
-          <div class="story-card">
-            <img src="img/IMG_0104 copiar (1).jpg" alt="Peças visuais produzidas">
-            <small>Peças produzidas</small>
-            <strong>Marca consistente</strong>
+          <div class="story-carousel" aria-label="Alguns designs para inspirar">
+            <div class="story-card">
+              <img src="img/IMG_0059 copiar (5).jpg" alt="Design aplicado em comunicação veterinária">
+              <small>Design real da equipe</small>
+              <strong>Social media veterinário</strong>
+            </div>
+            <div class="story-card">
+              <img src="img/IMG_0082 copiar (4).jpg" alt="Identidade aplicada em material veterinário">
+              <small>Identidade em materiais</small>
+              <strong>Autoridade e clareza</strong>
+            </div>
+            <div class="story-card">
+              <img src="img/IMG_0094 copiar (2).jpg" alt="Aplicação visual em campanhas">
+              <small>Campanhas e educação</small>
+              <strong>Conteúdo que educa</strong>
+            </div>
+            <div class="story-card">
+              <img src="img/IMG_0104 copiar (1).jpg" alt="Peças visuais produzidas">
+              <small>Peças produzidas</small>
+              <strong>Marca consistente</strong>
+            </div>
           </div>
         </div>
       </section>
@@ -680,6 +749,48 @@
         }
       });
     });
+
+    (function setupStorySlider() {
+      const track = document.querySelector('.story-track');
+      const slides = track ? Array.from(track.querySelectorAll('.story-slide')) : [];
+      const dotsWrap = document.querySelector('.story-dots');
+      if (!track || !slides.length || !dotsWrap) return;
+
+      let current = 0;
+
+      function renderDots() {
+        dotsWrap.innerHTML = '';
+        slides.forEach((_, idx) => {
+          const dot = document.createElement('button');
+          dot.className = 'story-dot' + (idx === current ? ' active' : '');
+          dot.setAttribute('aria-label', `Ir para parte ${idx + 1}`);
+          dot.addEventListener('click', () => goTo(idx));
+          dotsWrap.appendChild(dot);
+        });
+      }
+
+      function goTo(idx) {
+        current = (idx + slides.length) % slides.length;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        updateDots();
+      }
+
+      function updateDots() {
+        dotsWrap.querySelectorAll('.story-dot').forEach((dot, idx) => {
+          dot.classList.toggle('active', idx === current);
+        });
+      }
+
+      document.querySelectorAll('.story-ctrl-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const dir = btn.dataset.dir === 'next' ? 1 : -1;
+          goTo(current + dir);
+        });
+      });
+
+      renderDots();
+      goTo(0);
+    })();
   </script>
 </body>
 </html>
