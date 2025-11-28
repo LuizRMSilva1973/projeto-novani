@@ -574,7 +574,7 @@
       text-align: center;
     }
 
-    .accent-line {
+        .accent-line {
       width: 80px;
       height: 4px;
       background: linear-gradient(90deg, var(--primary), var(--secondary));
@@ -583,10 +583,90 @@
       box-shadow: 0 0 16px rgba(139, 209, 255, 0.5);
     }
 
+    /* POR QUE AVETDIGITAL */
+    .why-avet-intro {
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .why-avet-cta {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .why-avet-cta .cta-note {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 320px;
+    }
+
+    .reason-steps {
+      display: grid;
+      gap: 14px;
+    }
+
+    .reason-step {
+      position: relative;
+      padding: 16px 16px 14px;
+      border-radius: 16px;
+      border: 1px solid var(--stroke);
+      background: rgba(5, 9, 20, 0.88);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+      overflow: hidden;
+    }
+
+    .reason-step::before {
+      content: attr(data-step);
+      position: absolute;
+      right: 16px;
+      top: 12px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--secondary);
+      opacity: 0.8;
+    }
+
+    .reason-step h3 {
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+
+    .reason-step p {
+      color: var(--muted);
+      font-size: 0.96rem;
+      margin-bottom: 4px;
+    }
+
+    .reason-arrow {
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.94rem;
+      margin-top: 4px;
+    }
+
+    .reason-step:hover {
+      border-color: rgba(139, 209, 255, 0.6);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.55);
+      transform: translateY(-1px);
+      transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    @media (max-width: 768px) {
+      .why-avet-cta {
+        align-items: flex-start;
+      }
+    }
+
     @keyframes float {
       0%, 100% { transform: translateY(0px) scale(1); }
       50% { transform: translateY(-18px) scale(1.02); }
     }
+
 
     @media (max-width: 960px) {
       .nav-links { display: none; }
@@ -856,7 +936,75 @@
           <a class="btn" href="#contato">Conversar agora</a>
         </div>
       </section>
+           
 
+      <!-- POR QUE AVETDIGITAL -->
+      <section id="por-que">
+        <div class="accent-line"></div>
+        <h2 class="block-title">Por que escolher a AvetDigital</h2>
+        <p class="block-lead">
+          A AvetDigital une estratégia de marketing, conteúdo de valor e conhecimento
+          veterinário para posicionar profissionais e clínicas com segurança, autenticidade
+          e resultados reais. Aqui, o digital é feito com propósito — e dentro das normas do CFMV.
+        </p>
+
+        <div class="grid two-col">
+          <!-- Coluna 1: texto + CTA -->
+          <div class="card">
+            <h3>💬 Comunicação com ética, técnica e conexão</h3>
+            <p class="why-avet-intro">
+              Nada de fórmulas prontas ou “receitas virais” que não combinam com a realidade da clínica.
+              Cada estratégia nasce do seu contexto, da sua rotina e do tipo de tutor que você quer atrair.
+            </p>
+            <ul class="list">
+              <li>Posicionamento alinhado à sua história e especialidade.</li>
+              <li>Conteúdos que educam, fortalecem confiança e geram autoridade.</li>
+              <li>Respeito total às resoluções e orientações do CFMV.</li>
+            </ul>
+            <div class="why-avet-cta">
+              <a class="btn" href="#contato">💬 Falar com a Gabi</a>
+              <span class="cta-note">Vamos construir uma presença digital ética e forte para a sua marca.</span>
+            </div>
+          </div>
+
+          <!-- Coluna 2: passos/razões -->
+          <div class="card">
+            <div class="reason-steps">
+              <article class="reason-step" data-step="1">
+                <h3>Marketing de Conteúdo Veterinário</h3>
+                <p>
+                  O marketing de conteúdo é a base para atrair, educar e engajar tutores.
+                  Criamos conteúdos que fortalecem a confiança no profissional e mostram
+                  o valor do seu trabalho — sem promessas vazias e sem sensacionalismo.
+                </p>
+                <p class="reason-arrow">→ Informação que educa, conecta e gera autoridade.</p>
+              </article>
+
+              <article class="reason-step" data-step="2">
+                <h3>Estratégia com Propósito</h3>
+                <p>
+                  Cada perfil tem uma história. As estratégias são pensadas individualmente,
+                  com base na sua rotina, público e objetivos — nada de copiar o feed do colega.
+                </p>
+                <p class="reason-arrow">→ Sua marca fala com verdade e tem identidade própria.</p>
+              </article>
+
+              <article class="reason-step" data-step="3">
+                <h3>Ética e Conhecimento do CFMV</h3>
+                <p>
+                  Como médica veterinária, eu sei exatamente o que pode ou não ser divulgado
+                  segundo as resoluções do CFMV. Isso traz segurança para você e para a sua marca.
+                </p>
+                <p class="reason-arrow">
+                  → Marketing com responsabilidade, credibilidade e tranquilidade jurídica.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+     
       <!-- DIFERENCIAIS -->
       <section id="diferenciais">
         <div class="accent-line"></div>
