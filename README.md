@@ -17,8 +17,7 @@ Landing page estática inspirada no estilo neon/escuro do case “Blinky”, fei
 .
 ├── index.html   # Página principal e estilos inline
 ├── img/         # Imagens utilizadas no hero e demais seções
-├── video/       # Pasta reservada para vídeos (se necessário)
-└── CONTEUDOS TEXTUAIS SITE GABI FRIEND AVETDIGITAL.pdf
+└── video/       # Pasta reservada para vídeos (se necessário)
 ```
 
 ## Personalização rápida
@@ -27,4 +26,4 @@ Landing page estática inspirada no estilo neon/escuro do case “Blinky”, fei
 - Ajuste cores no bloco `:root` em `index.html` para novas variações de acento.
 
 ## Licença
-Uso interno/autoral para o portfólio/branding de Maria Gabriela Mantovani.***
+Uso interno/autoral para o portfólio/branding de Maria Gabriela Mantovani.
