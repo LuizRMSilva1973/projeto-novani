@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maria Gabriela Mantovani | Marketing Veterinário</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #05060f;
+      --bg-2: #0d0f25;
+      --panel: rgba(12, 13, 30, 0.86);
+      --stroke: rgba(255, 255, 255, 0.08);
+      --primary: #8bd1ff;
+      --secondary: #ff9fd6;
+      --accent: #8f86ff;
+      --text: #f6f8ff;
+      --muted: #cbd2e5;
+      --glow: 0 24px 80px rgba(139, 209, 255, 0.28);
+      --shadow: 0 32px 120px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Space Grotesk', 'Sora', system-ui, -apple-system, sans-serif;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(139, 209, 255, 0.14), transparent 30%),
+        radial-gradient(circle at 82% 12%, rgba(143, 134, 255, 0.18), transparent 30%),
+        linear-gradient(140deg, #040511 0%, var(--bg) 40%, #0a0e20 100%);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: '';
+      position: fixed;
+      width: 520px;
+      height: 520px;
+      filter: blur(120px);
+      opacity: 0.35;
+      z-index: 0;
+      pointer-events: none;
+    }
+    body::before { background: #8bd1ff; top: -120px; left: -60px; }
+    body::after { background: #8f86ff; bottom: -160px; right: -80px; }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; border-radius: 20px; }
+
+    .page-shell { position: relative; z-index: 1; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      background: rgba(5, 9, 20, 0.9);
+      border-bottom: 1px solid var(--stroke);
+    }
+    .nav {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.05rem;
+    }
+    .brand span {
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: linear-gradient(120deg, rgba(139, 209, 255, 0.22), rgba(143, 134, 255, 0.28));
+      border: 1px solid var(--stroke);
+    }
+
+    .nav-links { display: flex; gap: 18px; align-items: center; font-weight: 500; font-size: 0.98rem; color: var(--muted); }
+    .nav-links a { transition: color 0.2s ease, transform 0.2s ease; padding: 8px 10px; border-radius: 12px; }
+    .nav-links a:hover { color: var(--text); transform: translateY(-1px); background: rgba(255, 255, 255, 0.04); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: linear-gradient(120deg, #8bd1ff, #c2e5ff);
+      color: #041023;
+      font-weight: 700;
+      box-shadow: var(--glow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+      cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-2px) scale(1.01); filter: brightness(1.04); box-shadow: 0 20px 80px rgba(139, 209, 255, 0.35); }
+    .btn.secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: rgba(255, 255, 255, 0.18);
+      box-shadow: none;
+    }
+    .btn.secondary:hover { border-color: var(--primary); color: var(--primary); }
+
+    main { max-width: 1220px; margin: 0 auto; padding: 52px 24px 120px; }
+    section { margin-top: 96px; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      color: var(--muted);
+      letter-spacing: 0.03em;
+      background: rgba(255, 255, 255, 0.03);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+    }
+    .pill::before {
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: radial-gradient(circle, var(--primary), rgba(139, 209, 255, 0.25));
+      box-shadow: 0 0 18px var(--primary);
+    }
+
+    .block-title { font-size: clamp(2rem, 3vw, 2.4rem); margin-bottom: 16px; letter-spacing: -0.02em; }
+    .block-lead { color: var(--muted); max-width: 760px; margin-bottom: 26px; }
+
+    .hero { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 42px; align-items: center; margin-top: 32px; position: relative; }
+    .hero h1 { font-size: clamp(2.6rem, 4vw, 3.4rem); line-height: 1.1; margin: 18px 0; }
+    .title-glow { color: var(--primary); text-shadow: 0 0 28px rgba(139, 209, 255, 0.4); position: relative; }
+    .title-glow::after {
+      content: '';
+      position: absolute;
+      inset: 60% -6% -10% -6%;
+      background: linear-gradient(120deg, rgba(139, 209, 255, 0.14), rgba(143, 134, 255, 0.14));
+      filter: blur(20px);
+      z-index: -1;
+    }
+    .hero p { color: var(--muted); font-size: 1.05rem; }
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; align-items: center; }
+    .cta-note { color: var(--muted); font-size: 0.94rem; }
+
+    .hero-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 20px; }
+    .stat {
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      background: linear-gradient(140deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+      display: grid;
+      gap: 4px;
+    }
+    .stat strong { font-size: 1.2rem; }
+    .stat span { color: var(--muted); font-size: 0.95rem; }
+
+    .hero-media { position: relative; }
+    .hero-blob {
+      position: absolute;
+      inset: -14% -12% -16% -18%;
+      background: radial-gradient(circle at 30% 20%, rgba(139, 209, 255, 0.24), transparent 35%),
+                  radial-gradient(circle at 80% 40%, rgba(143, 134, 255, 0.32), transparent 45%),
+                  linear-gradient(160deg, rgba(255, 159, 214, 0.18), rgba(255, 159, 214, 0));
+      filter: blur(30px);
+      opacity: 0.8;
+      border-radius: 40%;
+      animation: float 18s ease-in-out infinite;
+    }
+    .hero-card {
+      position: relative;
+      background: var(--panel);
+      border: 1px solid var(--stroke);
+      border-radius: 26px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      isolation: isolate;
+    }
+    .hero-card img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(8, 12, 24, 0.75) 100%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      position: absolute;
+      bottom: 18px;
+      left: 18px;
+      padding: 14px 16px;
+      background: rgba(5, 9, 20, 0.8);
+      border: 1px solid var(--stroke);
+      border-radius: 14px;
+      z-index: 2;
+      color: var(--text);
+      display: grid;
+      gap: 6px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+    }
+    .hero-badge small { color: var(--muted); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+
+    .grid { display: grid; gap: 20px; }
+    .two-col { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .three-col { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--stroke);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(139, 209, 255, 0.08), rgba(143, 134, 255, 0.04));
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      pointer-events: none;
+    }
+    .card:hover::before { opacity: 1; }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(139, 209, 255, 0.12);
+      color: var(--primary);
+      font-weight: 700;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      border: 1px solid rgba(139, 209, 255, 0.3);
+    }
+    .chip::before {
+      content: '✦';
+      color: var(--secondary);
+      font-size: 0.9rem;
+    }
+
+    ul { list-style: none; }
+    .list { display: grid; gap: 10px; margin-top: 12px; position: relative; z-index: 1; }
+    .list li { color: var(--muted); padding-left: 26px; position: relative; }
+    .list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--primary), rgba(139, 209, 255, 0.2));
+      box-shadow: 0 0 14px rgba(139, 209, 255, 0.6);
+    }
+
+    .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+    .service-card { padding: 22px; border-radius: 22px; border: 1px solid var(--stroke); background: linear-gradient(150deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01)); box-shadow: var(--shadow); position: relative; overflow: hidden; }
+    .service-card h3 { margin: 10px 0; font-size: 1.25rem; }
+    .service-card p { color: var(--muted); margin-bottom: 8px; }
+    .service-card .cta-mini { display: inline-flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); color: var(--primary); font-weight: 700; background: rgba(139, 209, 255, 0.08); margin-top: 8px; }
+    .service-card .cta-mini span { color: var(--secondary); }
+
+    .cta-bar {
+      margin-top: 70px;
+      padding: 28px 26px;
+      border-radius: 20px;
+      background: linear-gradient(120deg, rgba(139, 209, 255, 0.18), rgba(143, 134, 255, 0.18));
+      border: 1px solid var(--stroke);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .why { display: grid; gap: 12px; }
+    .why li { padding: 14px 16px; border: 1px solid var(--stroke); border-radius: 14px; background: rgba(255,255,255,0.03); color: var(--text); position: relative; }
+    .why li::before { content: '✓'; color: var(--primary); font-weight: 800; margin-right: 10px; position: absolute; left: 12px; }
+    .why li { padding-left: 34px; color: var(--muted); }
+
+    .contact {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px;
+      align-items: start;
+    }
+    form { display: grid; gap: 14px; }
+    label { font-weight: 600; color: var(--text); font-size: 0.95rem; }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      font-size: 1rem;
+    }
+    textarea { min-height: 120px; resize: vertical; }
+
+    footer { margin-top: 90px; padding: 28px 24px 40px; border-top: 1px solid var(--stroke); color: var(--muted); text-align: center; }
+
+    .accent-line {
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 999px;
+      margin-bottom: 16px;
+      box-shadow: 0 0 16px rgba(139, 209, 255, 0.5);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-18px) scale(1.02); }
+    }
+
+    @media (max-width: 960px) {
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-media { order: -1; }
+      .cta-bar { grid-template-columns: 1fr; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header>
+      <nav class="nav">
+        <div class="brand">Maria Gabriela <span>Mantovani</span></div>
+        <div class="nav-links">
+          <a href="#sobre">Sobre</a>
+          <a href="#servicos">Serviços</a>
+          <a href="#diferenciais">Diferenciais</a>
+          <a href="#contato">Contato</a>
+        </div>
+        <a class="btn" href="#contato">Vamos Conversar</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="topo">
+        <div>
+          <span class="pill">Marketing veterinário premium</span>
+          <h1>Presença digital <span class="title-glow">viva</span> para clínicas e profissionais veterinários.</h1>
+          <p>Sou Maria Gabriela Mantovani: médica veterinária, especialista em oncologia e estrategista digital. Traduzo a linguagem técnica do consultório em comunicação que educa, atrai e converte os tutores certos.</p>
+          <div class="hero-stats">
+            <div class="stat">
+              <strong>+2 anos</strong>
+              <span>Estratégias só para o nicho veterinário</span>
+            </div>
+            <div class="stat">
+              <strong>Oncologia + Social media</strong>
+              <span>Conteúdo técnico com narrativa acessível</span>
+            </div>
+            <div class="stat">
+              <strong>Resposta em 24h</strong>
+              <span>Processos com contrato e NF garantidos</span>
+            </div>
+          </div>
+          <div class="hero-cta">
+            <a class="btn" href="#contato">Fale comigo</a>
+            <a class="btn secondary" href="#servicos">Ver soluções</a>
+            <span class="cta-note">Atendimento 100% remoto e personalizado</span>
+          </div>
+        </div>
+        <div class="hero-media">
+          <div class="hero-blob"></div>
+          <div class="hero-card">
+            <img src="img/IMG_0043 copiar (3).jpg" alt="Maria Gabriela em atendimento veterinário" />
+            <div class="hero-badge">
+              <small>Consultoria & produção</small>
+              <div>Veterinária • Oncologia • Estratégia digital</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sobre">
+        <div class="accent-line"></div>
+        <h2 class="block-title">Quem sou eu</h2>
+        <p class="block-lead">Médica veterinária com pós em Oncologia, graduada em Ciências da Computação e Marketing. A combinação de clínica, tecnologia e branding me permite falar com clareza para colegas e tutores, construindo autoridade com empatia.</p>
+        <div class="grid two-col">
+          <div class="card">
+            <h3>Visão 360º</h3>
+            <p>Entendo a rotina do consultório, a ciência e o digital. Produzo estratégia com base técnica e narrativa humana.</p>
+            <div class="list">
+              <li>Experiência dedicada ao marketing veterinário</li>
+              <li>Social media para profissionais, clínicas e eventos</li>
+              <li>Foco em autoridade, relacionamento e resultado</li>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Missão</h3>
+            <p>Ajudar veterinários a construírem uma presença sólida e acessível — refletindo a qualidade do cuidado que oferecem todos os dias.</p>
+            <div class="list">
+              <li>Conteúdo estratégico e inclusivo</li>
+              <li>Processos claros com cronograma e entregas</li>
+              <li>Colaboração próxima para decisões rápidas</li>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="servicos">
+        <div class="accent-line"></div>
+        <h2 class="block-title">Como posso ajudar você</h2>
+        <p class="block-lead">Do design ao planejamento digital completo: soluções para comunicar sua marca veterinária com clareza, empatia e performance.</p>
+
+        <div class="service-grid">
+          <article class="service-card">
+            <div class="chip">Identidade Visual</div>
+            <h3>Marca que transmite confiança</h3>
+            <p>Identidades exclusivas que refletem sua essência profissional.</p>
+            <div class="list">
+              <li>Logotipo, paleta, tipografia e guia de uso</li>
+              <li>Aplicações para cartões, redes e materiais</li>
+              <li>Entrega com manual prático</li>
+            </div>
+            <div class="cta-mini">Consultoria + Design <span>→</span></div>
+          </article>
+
+          <article class="service-card">
+            <div class="chip">Material Didático</div>
+            <h3>Conteúdo técnico que engaja</h3>
+            <p>E-books, slides, infográficos e campanhas educativas sob medida.</p>
+            <div class="list">
+              <li>Ideais para palestras, cursos e campanhas</li>
+              <li>Criação e revisão com olhar clínico</li>
+              <li>Volume e formatos personalizados</li>
+            </div>
+            <div class="cta-mini">Estrutura + Redação <span>→</span></div>
+          </article>
+
+          <article class="service-card">
+            <div class="chip">Carteira de Vacinação</div>
+            <h3>Personalizada com sua identidade</h3>
+            <p>Carteiras exclusivas para sua clínica — reforço de marca na mão do tutor.</p>
+            <div class="list">
+              <li>Design alinhado à sua identidade</li>
+              <li>Versões digitais e prontas para impressão</li>
+            </div>
+            <div class="cta-mini">Solicitar modelo <span>→</span></div>
+          </article>
+
+          <article class="service-card">
+            <div class="chip">Edição de Vídeos</div>
+            <h3>Vídeos que informam e convertem</h3>
+            <p>Aplicação da sua identidade, legendas acessíveis e consultoria de gravação.</p>
+            <div class="list">
+              <li>Planos mensais com 4, 8 ou 12 vídeos</li>
+              <li>Roteiro, cortes, motion leve e acessibilidade</li>
+              <li>Contrato e NF mensal incluídos</li>
+            </div>
+            <div class="cta-mini">Definir plano ideal <span>→</span></div>
+          </article>
+
+          <article class="service-card">
+            <div class="chip">Gestão de Instagram</div>
+            <h3>Planejamento, criação e análise completa</h3>
+            <p>Conteúdo, edição, agendamento e métricas: você foca na clínica, eu no digital.</p>
+            <div class="list">
+              <li>Postagens, reels, análise e suporte</li>
+              <li>Planejamento editorial e calendário</li>
+              <li>Opções de volume conforme sua rotina</li>
+            </div>
+            <div class="cta-mini">Montar calendário <span>→</span></div>
+          </article>
+
+          <article class="service-card">
+            <div class="chip">Tráfego Pago</div>
+            <h3>Anúncios com retorno real</h3>
+            <p>Estratégias personalizadas com estudo de público, testes e acompanhamento contínuo.</p>
+            <div class="list">
+              <li>Campanhas para serviços, vacinação e lançamentos</li>
+              <li>Monitoramento e otimização semanal</li>
+              <li>Investimento definido juntos conforme objetivos</li>
+            </div>
+            <div class="cta-mini">Planejar campanha <span>→</span></div>
+          </article>
+        </div>
+
+        <div class="cta-bar">
+          <div>
+            <h3>Quer clareza sobre o melhor serviço para você?</h3>
+            <p class="block-lead">Envie uma mensagem contando seus objetivos. Respondo com um plano rápido e valores personalizados.</p>
+          </div>
+          <a class="btn" href="#contato">Conversar agora</a>
+        </div>
+      </section>
+
+      <section id="diferenciais">
+        <div class="accent-line"></div>
+        <h2 class="block-title">Meus diferenciais</h2>
+        <div class="grid two-col">
+          <div class="card">
+            <ul class="why">
+              <li>Sou veterinária: entendo sua rotina, desafios e linguagem técnica.</li>
+              <li>Estratégia que funciona: formação em marketing e tecnologia.</li>
+              <li>Comunicação humanizada que conecta tutores e fortalece o vínculo.</li>
+              <li>Processos profissionais: contrato, Nota Fiscal e organização.</li>
+              <li>Acessibilidade em tudo: legendas, descrições e recursos inclusivos.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>O que você vai sentir</h3>
+            <p class="block-lead">Mais autoridade, consistência e tranquilidade para focar no atendimento enquanto a comunicação trabalha por você.</p>
+            <div class="list">
+              <li>Planejamento e conteúdo alinhados à sua voz</li>
+              <li>Rotinas ágeis para aprovações e entregas</li>
+              <li>Métricas claras para acompanhar evolução</li>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contato">
+        <div class="accent-line"></div>
+        <h2 class="block-title">Vamos conversar?</h2>
+        <p class="block-lead">Pronta para levar sua comunicação veterinária ao próximo nível. Preencha o formulário ou envie um e-mail e vamos construir juntas.</p>
+        <div class="contact">
+          <form action="mailto:mantovani1999@gmail.com" method="POST" enctype="text/plain">
+            <div>
+              <label for="nome">Nome</label>
+              <input id="nome" name="Nome" type="text" placeholder="Seu nome" required>
+            </div>
+            <div>
+              <label for="email">E-mail</label>
+              <input id="email" name="Email" type="email" placeholder="seuemail@exemplo.com" required>
+            </div>
+            <div>
+              <label for="telefone">Telefone/WhatsApp</label>
+              <input id="telefone" name="Telefone" type="tel" placeholder="(00) 00000-0000">
+            </div>
+            <div>
+              <label for="servico">Serviço de interesse</label>
+              <select id="servico" name="Serviço">
+                <option value="Identidade Visual">Identidade Visual</option>
+                <option value="Material Didático">Material Didático</option>
+                <option value="Carteira de Vacinação">Carteira de Vacinação</option>
+                <option value="Edição de Vídeos">Edição de Vídeos</option>
+                <option value="Gestão de Instagram">Gestão de Instagram</option>
+                <option value="Tráfego Pago">Tráfego Pago</option>
+                <option value="Outro">Outro</option>
+              </select>
+            </div>
+            <div>
+              <label for="mensagem">Mensagem</label>
+              <textarea id="mensagem" name="Mensagem" placeholder="Conte um pouco sobre seus objetivos"></textarea>
+            </div>
+            <button class="btn" type="submit">Enviar mensagem</button>
+          </form>
+          <div class="card">
+            <h3>Contato direto</h3>
+            <div class="list">
+              <li><strong>E-mail:</strong> mantovani1999@gmail.com</li>
+              <li><strong>Instagram:</strong> @seuinstagram (adicione aqui)</li>
+              <li><strong>CNPJ:</strong> 57.693.156/0001-12</li>
+            </div>
+            <p style="margin-top:14px; color: var(--muted);">Respondo em até 1 dia útil. Se preferir, envie um "oi" pelo WhatsApp com seu nome e serviço de interesse.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Maria Gabriela Mantovani | Marketing Veterinário Especializado · Todos os direitos reservados © 2025
+    </footer>
+  </div>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', evt => {
+        const targetId = link.getAttribute('href').slice(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          evt.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
