@@ -257,7 +257,7 @@
 
     ul { list-style: none; padding: 0; margin: 0; }
     .list { display: grid; gap: 10px; margin-top: 12px; position: relative; z-index: 1; padding: 0; }
-    .list li { color: var(--muted); padding-left: 18px; position: relative; }
+    .list li { color: var(--muted); padding-left: 18px; position: relative; list-style: none; }
     .list li::before {
       content: '•';
       position: absolute;
@@ -402,10 +402,10 @@
               <li>Foco em autoridade, relacionamento e resultado</li>
             </ul>
           </div>
-          <ul class="card">
+          <div class="card">
             <h3>Missão</h3>
             <p>Ajudar veterinários a construírem uma presença sólida e acessível — refletindo a qualidade do cuidado que oferecem todos os dias.</p>
-            <div class="list">
+            <ul class="list">
               <li>Conteúdo estratégico e inclusivo</li>
               <li>Processos claros com cronograma e entregas</li>
               <li>Colaboração próxima para decisões rápidas</li>
@@ -564,12 +564,14 @@
           </form>
           <div class="card">
             <h3>Contato direto</h3>
-            <div class="list">
+            <ul class="list">
               <li><strong>E-mail:</strong> mantovani1999@gmail.com</li>
               <li><strong>Instagram:</strong> @seuinstagram (adicione aqui)</li>
               <li><strong>CNPJ:</strong> 57.693.156/0001-12</li>
-            </div>
-            <p style="margin-top:14px; color: var(--muted);">Respondo em até 1 dia útil. Se preferir, envie um "oi" pelo WhatsApp com seu nome e serviço de interesse.</p>
+            </ul>
+            <p style="margin-top:14px; color: var(--muted);">
+              Respondo em até 1 dia útil. Se preferir, envie um "oi" pelo WhatsApp com seu nome e serviço de interesse.
+            </p>
           </div>
         </div>
       </section>
