@@ -168,6 +168,7 @@
       padding: 22px 20px 28px;
       display: grid;
       gap: 12px;
+      position: relative;
     }
     .story-slide p { color: var(--muted); }
     .story-slide ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
@@ -179,6 +180,18 @@
       justify-content: space-between;
       gap: 10px;
       padding: 10px 8px 4px;
+    }
+    .story-slide img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+      position: absolute;
+      right: 18px;
+      bottom: 18px;
+      opacity: 0.9;
     }
     .story-dots { display: flex; gap: 8px; justify-content: center; flex: 1; }
     .story-dot {
@@ -453,17 +466,21 @@
             <div class="story-track">
               <article class="story-slide">
                 <p>Todo veterinário já viveu aquele momento em que o consultório está cheio, o telefone não para, os tutores têm mil dúvidas — e, quando finalmente o dia termina, não sobra energia para pensar em redes sociais.</p>
+                <img src="img/IMG_0059 copiar (5).jpg" alt="Design aplicado em comunicação veterinária">
               </article>
               <article class="story-slide">
                 <p class="story-highlight">E aí bate aquela sensação incômoda: “Será que estou perdendo pacientes porque minha presença digital não mostra quem eu realmente sou?”</p>
+                <img src="img/IMG_0082 copiar (4).jpg" alt="Identidade aplicada em material veterinário">
               </article>
               <article class="story-slide">
                 <p>Eu entendo. Porque antes de ser do marketing… eu sou médica veterinária. E já estive exatamente no mesmo lugar que você.</p>
                 <p>Lá atrás, eu via colegas incríveis — profissionais dedicados, técnicos, humanos — tendo dificuldade para mostrar seu trabalho de forma clara. A agenda não preenchia como merecia, e os tutores nem sempre compreendiam o valor real por trás de cada conduta, exame e decisão clínica.</p>
+                <img src="img/IMG_0094 copiar (2).jpg" alt="Aplicação visual em campanhas">
               </article>
               <article class="story-slide">
                 <p>Não era falta de competência. Era falta de comunicação.</p>
                 <p>Foi aí que percebi: o veterinário que sabe se comunicar, cresce. O que não sabe, fica para trás — mesmo sendo excelente.</p>
+                <img src="img/IMG_0104 copiar (1).jpg" alt="Peças visuais produzidas">
               </article>
               <article class="story-slide">
                 <p>Então transformei minha experiência na clínica em estratégia digital. Hoje, ajudo veterinários a traduzirem sua rotina, sua técnica e seu cuidado em uma presença online que:</p>
@@ -473,10 +490,12 @@
                   <li>fortalece autoridade,</li>
                   <li>e sustenta o crescimento da clínica.</li>
                 </ul>
+                <img src="img/IMG_0059 copiar (5).jpg" alt="Social media veterinário">
               </article>
               <article class="story-slide">
                 <p>Sem fórmulas prontas. Sem “modinhas” do marketing. Apenas comunicação feita por alguém que conhece seu mundo — porque ele também já foi o meu.</p>
                 <p class="story-highlight">Seu trabalho é salvar vidas. O meu é garantir que as pessoas certas enxerguem isso.</p>
+                <img src="img/IMG_0082 copiar (4).jpg" alt="Autoridade e clareza">
               </article>
             </div>
             <div class="story-controls">
@@ -787,6 +806,16 @@
           goTo(current + dir);
         });
       });
+
+      let auto = setInterval(() => goTo(current + 1), 5000);
+      function resetAuto() {
+        clearInterval(auto);
+        auto = setInterval(() => goTo(current + 1), 5000);
+      }
+      track.addEventListener('pointerdown', resetAuto);
+      track.addEventListener('pointerup', resetAuto);
+      dotsWrap.addEventListener('click', resetAuto);
+      document.querySelectorAll('.story-ctrl-btn').forEach(btn => btn.addEventListener('click', resetAuto));
 
       renderDots();
       goTo(0);
